@@ -82,22 +82,72 @@ class BinarySearchTree {
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPreOrder() {}
+  dfsPreOrder() {
+    const result = [];
+    const traverse = (node) => {
+      if (!node) return;
+      // Visit
+      result.push(node.val);
+      // Left
+      traverse(node.left);
+      // Right
+      traverse(node.right);
+    };
+    traverse(this.root);
+    return result;
+  }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
-  dfsInOrder() {}
+  dfsInOrder() {
+    const result = [];
+    const traverse = (node) => {
+      if (!node) return;
+      // Left
+      traverse(node.left);
+      // Visit
+      result.push(node.val);
+      // Right
+      traverse(node.right);
+    };
+    traverse(this.root);
+    return result;
+  }
 
   /** dfsPostOrder(): Traverse the array using post-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPostOrder() {}
+  dfsPostOrder() {
+    const result = [];
+    const traverse = (node) => {
+      if (!node) return;
+      // Left
+      traverse(node.left);
+      // Right
+      traverse(node.right);
+      // Visit
+      result.push(node.val);
+    };
+    traverse(this.root);
+    return result;
+  }
 
   /** bfs(): Traverse the array using BFS.
    * Return an array of visited nodes. */
 
-  bfs() {}
+  bfs() {
+    const result = [];
+    if (!this.root) return result;
+    const queue = [this.root];
+    while (queue.length) {
+      const node = queue.shift();
+      result.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return result;
+  }
 
   /** Further Study!
    * remove(val): Removes a node in the BST with the value val.
